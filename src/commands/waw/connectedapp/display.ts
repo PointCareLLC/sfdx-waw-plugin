@@ -1,8 +1,16 @@
-import {SfdxCommand} from '@salesforce/command';
+import {core, SfdxCommand, flags} from '@salesforce/command';
 
-export default class List extends SfdxCommand {
+export default class Display extends SfdxCommand {
 
   public static description = 'List the connected apps in your org';
+
+  protected static flagsConfig = {
+    connectedappname: flags.string(
+      {
+        char: 'n', 
+        description: 'connected app name',
+      })
+  };
 
   // Comment this out if your command does not require an org username
   protected static requiresUsername = true;
@@ -15,11 +23,12 @@ export default class List extends SfdxCommand {
 
   public async run(): Promise<any> { // tslint:disable-line:no-any
     
+    const connectedAppName = this.flags.connectedappname;
+
     // refresh auth
     await this.org.refreshAuth();
 
-    var types = [{type: 'ConnectedApp', folder: null}];
-    this.org.getConnection().metadata.list(types, '42.0', (readErr, metadataResult) => {
+    this.org.getConnection().metadata.read('ConnectedApp', connectedAppName, (readErr, metadataResult) => {
       if (readErr) {
         this.ux.error(readErr);
         return;
