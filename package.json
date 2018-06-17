@@ -63,8 +63,13 @@
     "salesforcedx"
   ],
   "license": "ISC",
-  "main": "index.js",
+  "main": "lib/index.js",
   "oclif": {
+    "topics": {
+      "waw:connectedapp": {
+        "description": "testing"
+      }
+    },
     "commands": "./lib/commands",
     "devPlugins": [
       "@oclif/plugin-help"
