@@ -67,7 +67,10 @@
   "oclif": {
     "topics": {
       "waw:connectedapp": {
-        "description": "testing"
+        "description": "manage your Connected Apps"
+      },
+      "waw:org": {
+        "description": "manage your Salesforce DX orgs"
       }
     },
     "commands": "./lib/commands",
