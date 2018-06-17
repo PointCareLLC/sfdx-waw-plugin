@@ -1,7 +1,13 @@
 import { core, SfdxCommand, flags } from '@salesforce/command';
+import { MetadataInfo, SaveResult } from 'jsforce';
 import forge = require('node-forge');
 import fs = require('fs');
 import helper = require('../../../shared/connectedapp');
+
+// This type doesn't exist in @types/jsforce
+interface ConnectedApp extends MetadataInfo {
+  oauthConfig: { consumerSecret: string };
+}
 
 export default class Create extends SfdxCommand {
 
@@ -22,7 +28,7 @@ export default class Create extends SfdxCommand {
     label: flags.string(
       {
         char: 'l',
-        description: 'connected app label',
+        description: 'connected app label'
       }
     ),
     certificate: flags.boolean(
@@ -142,11 +148,10 @@ export default class Create extends SfdxCommand {
       }];
     }
 
-    const createResults = await conn.metadata.create('ConnectedApp', metadata);
+    const createResults = await conn.metadata.create('ConnectedApp', metadata) as SaveResult;
 
     if (createResults.success) {
-
-      const readResult = await conn.metadata.read('ConnectedApp', connectedAppName);
+      const readResult = await conn.metadata.read('ConnectedApp', connectedAppName) as ConnectedApp;
       // add the consume secret to the output (since it's not returned)
       readResult.oauthConfig.consumerSecret = generatedConsumerSecret;
 
