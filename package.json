@@ -66,6 +66,9 @@
   "main": "lib/index.js",
   "oclif": {
     "topics": {
+      "waw": {
+        "description": "useful commands from Wade Wegner"
+      },
       "waw:connectedapp": {
         "description": "manage your Connected Apps"
       },
