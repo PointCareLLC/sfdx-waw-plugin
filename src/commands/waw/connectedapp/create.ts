@@ -11,7 +11,7 @@ interface ConnectedApp extends MetadataInfo {
 
 export default class Create extends SfdxCommand {
 
-  public static description = 'Create a connected app in your org';
+  // public static description = 'Create a connected app in your org';
 
   public static examples = [
     `sfdx waw:connectedapp:create

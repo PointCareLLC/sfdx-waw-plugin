@@ -11,6 +11,7 @@
     "@oclif/config": "1",
     "@oclif/errors": "1",
     "@salesforce/command": "0.1.5",
+    "@salesforce/core": "^0.18.2",
     "async": "^2.6.1",
     "child_process": "^1.0.2",
     "fs-extra": "^2.0.0",
@@ -74,10 +75,13 @@
       },
       "waw:org": {
         "description": "manage your Salesforce DX orgs"
+      },
+      "waw:connectedapp:create": {
+        "description": "test 123"
       }
     },
     "commands": "./lib/commands",
-    "devPlugins": [
+    "plugins": [
       "@oclif/plugin-help"
     ]
   },
